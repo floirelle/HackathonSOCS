@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OtpActivity"
+    android:background="@color/white"
+    android:padding="20dp"
+    >
+
+    <ImageView
+
+        android:id="@+id/back_arrow_btn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_foreground"
+        android:scaleX="-1"
+        />
+    <ImageView
+        android:id="@+id/otp_icon"
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_width="60dp"
+        android:layout_height="80dp"
+        android:src="@mipmap/otp_foreground"
+        />
+    <LinearLayout
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_toEndOf="@id/otp_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="20sp"
+            android:textColor="@color/textPrimary"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Kode OTP telah dikirim!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="14sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Masukkan kode OTP yang telah kami kirimkan melalui SMS ke nomor HP kamu +628xxxxxxxxxxx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/otp_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/otp_icon"
+        android:layout_marginTop="100dp"
+        >
+        <EditText
+
+            android:hint="Kode OTP"
+            android:textColorHint="@color/gray"
+            android:id="@+id/otp_code_field"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_regular"
+
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="18sp"
+            android:fontFamily="@font/montserrat_regular"
+            android:id="@+id/resend_otp_text"
+            android:textColor="@color/red"
+            android:text="@string/resend_otp"
+            android:textAlignment="textEnd"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/otp_container"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <Button
+            android:paddingHorizontal="20dp"
+            android:id="@+id/continue_btn"
+            android:background="@drawable/btn_primary"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="LANJUT"
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>

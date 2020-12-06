@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">HackathonSOCS</string>
+    <string name="resend_otp"><u>Kirim ulang kode</u></string>
+
 </resources>
