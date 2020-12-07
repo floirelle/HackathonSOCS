@@ -117,15 +117,24 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else{
-                        // go to dashboard
-                        val intent = Intent(this,HomeActivity::class.java)
-                        intent.putExtra("user",user)
-                        startActivity(intent)
+                    // go to dashboard
+                    setPreferences(user!!)
+                    val intent = Intent(this,HomeActivity::class.java)
+                    intent.putExtra("user",user)
+                    startActivity(intent)
                     }
                 }
             }
         }
 
+    }
+    private fun setPreferences(user: User){
+        val sharedPref = getSharedPreferences("user", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("email", user.email)
+        editor.putString("name", user.name)
+        editor.putString("phone", user.phoneNumber)
+        editor.apply()
     }
 
 }
