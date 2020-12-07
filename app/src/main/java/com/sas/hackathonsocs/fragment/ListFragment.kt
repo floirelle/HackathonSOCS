@@ -20,7 +20,7 @@ class ListFragment : Fragment() {
         val intent = this.activity!!.intent
         user = intent.extras!!.get("user") as User
 
-        }
+    }
 
 
     override fun onCreateView(

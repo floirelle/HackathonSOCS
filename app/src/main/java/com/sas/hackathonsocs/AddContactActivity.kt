@@ -14,6 +14,14 @@ class AddContactActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_contact)
         val email = getSharedPreferences("user", MODE_PRIVATE).getString("email","").toString()
+
+        back_arrow_btn.setOnClickListener({
+            val intent = Intent(this,HomeActivity::class.java)
+            startActivity(intent)
+            this.finishAffinity()
+        })
+
+
         add_contact_btn.setOnClickListener(View.OnClickListener {
             var user: User = User()
             user.name = tv_name.text.toString()

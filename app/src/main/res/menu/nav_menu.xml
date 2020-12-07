@@ -12,8 +12,4 @@
         android:id="@+id/menu_book"
         android:icon="@drawable/ic_baseline_book"
         android:title="@string/contact"/>
-    <item
-        android:id="@+id/menu_profile"
-        android:icon="@drawable/ic_baseline_account"
-        android:title="@string/profile"/>
 </menu>

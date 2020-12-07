@@ -18,15 +18,13 @@ class HomeActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val listFragment = ListFragment() //Menu 2
         val bookFragment = ContactFragment() //Menu 3
-        val userFragment = ProfileFragment()
 
         setCurrentFragment(homeFragment, getResources().getString(R.string.home))
         nav_bottom.setOnNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.menu_home -> setCurrentFragment(homeFragment, this.getResources().getString(R.string.home))
-                R.id.menu_list -> setCurrentFragment(listFragment, getResources().getString(R.string.list))
+                R.id.menu_list -> setCurrentFragment(listFragment, "List Transaksi")
                 R.id.menu_book -> setCurrentFragment(bookFragment, getResources().getString(R.string.contact))
-                R.id.menu_profile -> setCurrentFragment(userFragment, "${getResources().getString(R.string.hello)} ${"Bang Oke"}")
             }
             true
         }

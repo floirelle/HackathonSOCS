@@ -1,28 +1,26 @@
 package com.sas.hackathonsocs.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import com.sas.Firestore
+import com.sas.hackathonsocs.AddContactActivity
 import com.sas.hackathonsocs.R
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.sas.hackathonsocs.adapter.ContactAdapter
+import com.sas.hackathonsocs.model.Transaction
+import com.sas.hackathonsocs.model.User
+import kotlinx.android.synthetic.main.fragment_contact.*
+import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.ArrayList
 
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -33,23 +31,32 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val email = this.activity!!
+            .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
+            .getString("email", "").toString()
+        tv_name.text = this.activity!!
+            .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
+            .getString("name", "").toString()
+        Firestore.instance.collection("users")
+            .document(email)
+            .collection("transactions")
+            .addSnapshotListener{ value, e ->
+                if(e != null){
+//                    no_contact.visibility = View.VISIBLE
+                    tv_summary_pendapatan.text = "IDR 0"
+                    tv_summary_pengeluaran.text = "IDR 0"
+                    return@addSnapshotListener}
+                var income = 0
+                var expense = 0
+                for (doc in value!!) {
+                   val transaction = doc.toObject(Transaction::class.java)!!
+                    if(transaction.type.equals("Income")) income += transaction.nominal.toInt()
+                    else expense += transaction.nominal.toInt()
                 }
+                tv_summary_pendapatan.text = "IDR "+income.toInt()
+                tv_summary_pengeluaran.text = "IDR "+expense.toInt()
             }
     }
 }

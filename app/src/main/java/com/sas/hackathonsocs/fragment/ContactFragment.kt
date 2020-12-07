@@ -70,7 +70,7 @@ class ContactFragment : Fragment() {
         val email = this.activity!!
             .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
             .getString("email", "").toString()
-        Toast.makeText(this.context, email, Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this.context, email, Toast.LENGTH_SHORT).show()
 
         btn_add_contact.setOnClickListener({
             val intent = Intent(this.context, AddContactActivity::class.java)
