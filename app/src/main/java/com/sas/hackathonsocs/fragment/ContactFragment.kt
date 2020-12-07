@@ -3,6 +3,7 @@ package com.sas.hackathonsocs.fragment
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -66,11 +67,15 @@ class ContactFragment : Fragment() {
         val email = this.activity!!
             .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
             .getString("email", "").toString()
+//        Toast.makeText(this.context, email, Toast.LENGTH_SHORT).show()
 
         Firestore.instance.collection("users")
             .document(email)
             .collection("contact")
             .addSnapshotListener{ value, e ->
+                if(e != null){
+                    no_contact.visibility = View.VISIBLE
+                    return@addSnapshotListener}
                 var contacts = ArrayList<User>()
                 for (doc in value!!) {
                     contacts.add(doc.toObject(User::class.java)!!)

@@ -19,7 +19,7 @@ class ContactActivity : AppCompatActivity() {
         val user = intent.getParcelableExtra<User>("user")!!
         tv_email.text = user.email
         tv_name.text = user.name
-        tv_phone.text = user.phoneNumber
+        tv_phone.text = "+62"+user.phoneNumber
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
