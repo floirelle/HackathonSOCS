@@ -48,15 +48,16 @@ class RegisterActivity : AppCompatActivity() {
                 full_name_field.isEnabled = false
                 email_field.isEnabled = false
             }
-            register_btn.setOnClickListener()
-            {
-                val intent = Intent(this,OtpActivity::class.java)
-                var gender = "Male"
-                if (radio_female.isChecked) gender = "Female"
-                val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString(),gender)
-                intent.putExtra("phoneRegister",user)
-                startActivity(intent)
-            }
+
+        }
+        register_btn.setOnClickListener()
+        {
+            val intent = Intent(this,OtpActivity::class.java)
+            var gender = "Male"
+            if (radio_female.isChecked) gender = "Female"
+            val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString(),gender)
+            intent.putExtra("phoneRegister",user)
+            startActivity(intent)
         }
 
     }
