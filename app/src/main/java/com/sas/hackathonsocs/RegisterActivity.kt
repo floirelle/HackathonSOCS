@@ -13,15 +13,8 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
-        register_btn.isEnabled = false
+
         val intent = getIntent()
-        radio_gender_group.setOnCheckedChangeListener({ group, _ ->
-
-            run {
-                if (phone_number_field.text.length >= 10 && phone_number_field.text.length <= 12 )register_btn.isEnabled = true
-            }
-
-        })
         val tw = object: TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -48,15 +41,16 @@ class RegisterActivity : AppCompatActivity() {
                 full_name_field.isEnabled = false
                 email_field.isEnabled = false
             }
-            register_btn.setOnClickListener()
-            {
-                val intent = Intent(this,OtpActivity::class.java)
-                var gender = "Male"
-                if (radio_female.isChecked) gender = "Female"
-                val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString(),gender)
-                intent.putExtra("phoneRegister",user)
-                startActivity(intent)
-            }
+
+        }
+        register_btn.setOnClickListener()
+        {
+            val intent = Intent(this,OtpActivity::class.java)
+            var gender = "Male"
+            if (radio_female.isChecked) gender = "Female"
+            val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString(),gender)
+            intent.putExtra("phoneRegister",user)
+            startActivity(intent)
         }
 
     }
