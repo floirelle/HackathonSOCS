@@ -1,5 +1,6 @@
 package com.sas.hackathonsocs
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -91,6 +92,9 @@ class OtpActivity : AppCompatActivity() {
                         // do regis
                         db.collection("users").document(user.email).set(user).addOnSuccessListener {
                             Toast.makeText(this,"Pendaftaran Berhasil",Toast.LENGTH_SHORT).show()
+                            val intent = Intent(this,AddCompanyProfile::class.java)
+                            intent.putExtra("user",user)
+                            startActivity(intent)
                         }.addOnFailureListener()
                         {
                             Toast.makeText(this,""+it.message,Toast.LENGTH_SHORT).show()
@@ -98,14 +102,35 @@ class OtpActivity : AppCompatActivity() {
                     }
                     else {
                         // do login
-                        db.collection("users").whereEqualTo("phoneNumber",phoneNumber).get().addOnSuccessListener {
-                            if (it.size() == 0 )
+                        db.collection("users").whereEqualTo("phoneNumber",phoneNumber).limit(1).get().addOnCompleteListener {task ->
+                            if (!task.isSuccessful )
                             {
                                 Toast.makeText(this,"Akun tidak ditemukan",Toast.LENGTH_SHORT).show()
                             }
                             else{
-                                // go to user dashboard
-                                db.collection("users").document(user.email)
+                                // go to user dashboard or company profile
+                                db.collection("users").document(task.result!!.first().data.get("email") as String).collection("company").get().addOnSuccessListener {
+                                    Log.d("DATA","${task.result!!.first().data}")
+                                    val ph = "${task.result!!.first().data.get("phoneNumber")}"
+                                    val gender = "${task.result!!.first().data.get("gender")}"
+                                    val email = "${task.result!!.first().data.get("email")}"
+                                    val name = "${task.result!!.first().data.get("name")}"
+
+                                    val user = User(name,ph,email,gender)
+                                    if (it.size() == 0)
+                                    {
+                                        // add company profile
+                                        val intent = Intent(this,AddCompanyProfile::class.java)
+                                        intent.putExtra("user",user)
+                                        startActivity(intent)
+                                    }
+                                    else{
+                                        // go to dashboard
+                                        val intent = Intent(this,HomeActivity::class.java)
+                                        intent.putExtra("user",user)
+                                        startActivity(intent)
+                                    }
+                                }
                             }
                         }
                     }

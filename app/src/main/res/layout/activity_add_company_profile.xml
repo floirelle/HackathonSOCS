@@ -117,6 +117,7 @@
             />
 
         <EditText
+            android:textColor="@color/black"
             android:hint="Link Tokopedia"
             android:textColorHint="@color/gray"
             android:id="@+id/link_tokopedia"
@@ -124,6 +125,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:textColor="@color/black"
             android:hint="Link Shopee"
             android:textColorHint="@color/gray"
             android:id="@+id/link_shopee"
@@ -131,6 +133,7 @@
             android:layout_height="wrap_content"/>
 
         <EditText
+            android:textColor="@color/black"
             android:hint="Link Lainnya"
             android:textColorHint="@color/gray"
             android:id="@+id/link_other"

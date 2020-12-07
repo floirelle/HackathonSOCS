@@ -17,7 +17,6 @@ class LoginActivity : AppCompatActivity() {
         login_btn.setOnClickListener()
         {
             val intent = Intent(this,OtpActivity::class.java)
-            intent.putExtra("test","T")
             intent.putExtra("phoneLogin",phone_number_field.text)
             startActivity(intent)
         }

@@ -3,31 +3,36 @@ package com.sas.hackathonsocs.model
 import android.os.Parcel
 import android.os.Parcelable
 
-class User(
+class Company(
+
     val name:String,
-    val phoneNumber:String,
-    val email:String,
-    val gender:String
+    val type:String,
+    val link:HashMap<String,String> = hashMapOf()
 ): Parcelable{
     constructor(parcel: Parcel) : this(
-        parcel.readString()!!,
-        parcel.readString()!!,
+
         parcel.readString()!!,
         parcel.readString()!!
     ) {
+        val size = parcel.readInt()
+        for (i in 0..size)
+        {
+            link[parcel.readString()!!] = parcel.readString()!!
+        }
     }
-    constructor() : this("","","",""){}
-
 
     override fun describeContents(): Int {
         return 0
     }
 
     override fun writeToParcel(p: Parcel?, p1: Int) {
+
         p!!.writeString(name)
-        p!!.writeString(phoneNumber)
-        p!!.writeString(email)
-        p!!.writeString(gender)
+        p!!.writeString(type)
+        for ((key, value) in link) {
+            p.writeString(key)
+            p.writeString(value)
+        }
     }
 
 

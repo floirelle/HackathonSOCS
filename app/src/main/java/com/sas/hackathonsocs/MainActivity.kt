@@ -95,8 +95,9 @@ class MainActivity : AppCompatActivity() {
     private fun tryInsertData(user:FirebaseUser)
     {
         db.collection("users").document(user.email!!).get().addOnCompleteListener()
-        {
-            if (!it.isSuccessful)
+        {task ->
+            Log.d("DATA","${task.result!!.data}")
+            if (task.result!!.data == null)
             {
                 var phoneNumber = ""
                 val newUser = User(user.displayName!!,phoneNumber,user.email!!,"")
@@ -105,8 +106,23 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             else{
-                // go to dashboard or add profile
-
+                // go to dashboard or add company profile
+                db.collection("users").document(user.email!!).collection("company").get().addOnSuccessListener {
+                    val user = task.result!!.toObject(User::class.java)
+                    if (it.size() == 0)
+                    {
+                        // add company profile
+                        val intent = Intent(this,AddCompanyProfile::class.java)
+                        intent.putExtra("user",user)
+                        startActivity(intent)
+                    }
+                    else{
+                        // go to dashboard
+                        val intent = Intent(this,HomeActivity::class.java)
+                        intent.putExtra("user",user)
+                        startActivity(intent)
+                    }
+                }
             }
         }
 

@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         })
         val tw = object: TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                TODO("Not yet implemented")
+
             }
 
             override fun onTextChanged(c: CharSequence?, start: Int, before: Int, count: Int) {
@@ -32,7 +32,7 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                TODO("Not yet implemented")
+
             }
 
         }
