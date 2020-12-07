@@ -1,6 +1,7 @@
 package com.sas.hackathonsocs.adapter
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,10 +33,14 @@ class DoneTransactionAdapter (private val transactions: ArrayList<Transaction>):
     override fun onBindViewHolder(holder: DoneTransactionAdapter.ViewHolder, position: Int) {
         var curr = transactions[position]
         holder.desc.text = curr.description
+        Log.d("AS",""+Date(curr.transactionDate).toGMTString())
         val year = Date(curr.transactionDate).year
         val month = Date(curr.transactionDate).month + 1
-        val day = Date(curr.transactionDate).day
-        holder.date.text = "${day}/${month}/${year}"
+        val day = Date(curr.transactionDate).date
+        var d = ""
+        if (day < 10)d = "0"
+        d+=day
+        holder.date.text = "${d}/${month}/2000"
         holder.nominal.text = curr.nominal.toString()
 
     }

@@ -101,7 +101,7 @@ class ListFragment : Fragment() {
 
                 }
                 val adapter = DoneTransactionAdapter(salesDoneTransactions)
-                val adapter2 = DueTransactionAdapter(salesDueTransactions)
+                val adapter2 = DueTransactionAdapter(this.activity!!,salesDueTransactions)
                 recyclerView.adapter = adapter
                 viewPager.adapter = adapter2
                 adapter.notifyDataSetChanged()
@@ -111,13 +111,13 @@ class ListFragment : Fragment() {
                     "purchase" ->
                     {
                         recyclerView.adapter = DoneTransactionAdapter(purchaseDoneTransactions)
-                        viewPager.adapter = DueTransactionAdapter(purchaseDueTransactions)
+                        viewPager.adapter = DueTransactionAdapter(this.activity!!,salesDueTransactions)
                     }
 
                     "sales" ->
                     {
                         recyclerView.adapter = DoneTransactionAdapter(salesDoneTransactions)
-                        viewPager.adapter = DueTransactionAdapter(salesDueTransactions)
+                        viewPager.adapter = DueTransactionAdapter(this.activity!!,salesDueTransactions)
                     }
 
                 }

@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.sas.hackathonsocs.model.Transaction
 import com.sas.hackathonsocs.model.User
@@ -34,7 +35,7 @@ class AddTransactionActivity : AppCompatActivity() {
                     calendar.set(Calendar.MONTH,month)
                     calendar.set(Calendar.DAY_OF_MONTH,day)
                     datePicked = calendar.time.time
-
+                    Log.d("ASSAd",Date(datePicked).toGMTString())
 
                     var d = ""
                     if (day < 10)d = "0"
