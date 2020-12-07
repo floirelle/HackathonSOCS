@@ -18,13 +18,14 @@ import java.util.concurrent.TimeUnit
 class OtpActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    val TIME_OUT = 60
+    val TIME_OUT = 50
     var mCallback: PhoneAuthProvider.OnVerificationStateChangedCallbacks? = null
     private var state = 1 // 1 = login, 0 = register
     private var phoneNumber : String = ""
     private lateinit var user : User
     private lateinit var db:FirebaseFirestore
     private var verificationCode = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +55,10 @@ class OtpActivity : AppCompatActivity() {
         mCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             override fun onVerificationCompleted(phoneAuthCredential: PhoneAuthCredential) {
 
-                Toast.makeText(this@OtpActivity, "verification completed", Toast.LENGTH_SHORT)
-                    .show()
             }
 
             override fun onVerificationFailed(e: FirebaseException) {
-                Toast.makeText(this@OtpActivity, "verification failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@OtpActivity, "Verifikasi gagal", Toast.LENGTH_SHORT).show()
                 Log.d("FirebaseException", e.toString())
             }
 
@@ -78,42 +77,65 @@ class OtpActivity : AppCompatActivity() {
         resend_otp_text.setOnClickListener()
         {
             sendOTP()
+
         }
         continue_btn.setOnClickListener()
         {
-            if(verificationCode != otp_code_field.text.toString())
+            val credential = PhoneAuthProvider.getCredential(verificationCode,otp_code_field.text.toString())
+            auth.signInWithCredential(credential).addOnCompleteListener()
             {
-                Toast.makeText(this,"Kode verifikasi gagal, coba kembali",Toast.LENGTH_SHORT).show()
-            }
-            else{
-                if (state == 0)
+                if (it.isSuccessful)
                 {
-                    // do regis
-                    db.collection("users").document(email_field.text.toString()).set(user).addOnSuccessListener {
-                        Toast.makeText(this,"Pendaftaran Berhasil",Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener()
+                    if (state == 0)
                     {
-                        Toast.makeText(this,""+it.message,Toast.LENGTH_SHORT).show()
+                        // do regis
+                        db.collection("users").document(user.email).set(user).addOnSuccessListener {
+                            Toast.makeText(this,"Pendaftaran Berhasil",Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener()
+                        {
+                            Toast.makeText(this,""+it.message,Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else {
+                        // do login
+                        db.collection("users").whereEqualTo("phoneNumber",phoneNumber).get().addOnSuccessListener {
+                            if (it.size() == 0 )
+                            {
+                                Toast.makeText(this,"Akun tidak ditemukan",Toast.LENGTH_SHORT).show()
+                            }
+                            else{
+                                // go to user dashboard
+                                db.collection("users").document(user.email)
+                            }
+                        }
                     }
                 }
-                else {
-                    // do login
-                    db.collection("users").whereEqualTo("phoneNumber",user.phoneNumber).get().addOnSuccessListener {
-                        if (it.size() == 0 )
-                        {
-                            Toast.makeText(this,"Akun tidak ditemukan",Toast.LENGTH_SHORT).show()
-                        }
-                        else{
-                            // go to user dashboard
-                        }
-                    }
+                else
+                {
+                    Toast.makeText(this,"Kode verifikasi gagal, coba kembali",Toast.LENGTH_SHORT).show()
                 }
             }
-        }
+
+
+            }
+
 
     }
 
     private fun sendOTP(){
+        Thread({
+            var i = 60;
+            resend_otp_text.isEnabled = false
+            while(i > 0)
+            {
+                resend_otp_text.text = getString(R.string.resend_otp)+" (${i}) "
+                i--;
+                Thread.sleep(1000)
+            }
+            resend_otp_text.text = getString(R.string.resend_otp)
+            resend_otp_text.isEnabled = true
+
+        }).start()
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
             "+62"+phoneNumber,// Phone number to verify
             TIME_OUT.toLong(), // Timeout duration

@@ -3,6 +3,7 @@ package com.sas.hackathonsocs
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .requestIdToken(getString(R.string.default_web_client_id))
-            .requestScopes(Scope("https://www.googleapis.com/auth/user.phonenumbers.read"))
             .build()
 
 
@@ -94,15 +94,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun tryInsertData(user:FirebaseUser)
     {
-        var phoneNumber = ""
-        if(user.phoneNumber != null)
+        db.collection("users").document(user.email!!).get().addOnCompleteListener()
         {
-            phoneNumber = user.phoneNumber!!
+            if (!it.isSuccessful)
+            {
+                var phoneNumber = ""
+                val newUser = User(user.displayName!!,phoneNumber,user.email!!,"")
+                val intent = Intent(this,RegisterActivity::class.java)
+                intent.putExtra("userData",newUser)
+                startActivity(intent)
+            }
+            else{
+                // go to dashboard or add profile
+
+            }
         }
-        val newUser = User(user.displayName!!,phoneNumber,user.email!!,"Male")
-        db.collection("users").document(newUser.email).set(newUser).addOnSuccessListener {
-//            redirect to user dashboard
-        }
+
     }
 
 }

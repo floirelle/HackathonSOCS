@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddCompanyProfile"
+    android:background="@color/white"
+    android:padding="20dp"
+    >
+
+    <ImageView
+        android:id="@+id/back_arrow_btn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_foreground"
+        android:scaleX="-1"
+        />
+
+    <TextView
+        android:textSize="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Profil Usaha"
+        android:textColor="@color/textPrimary"
+        />
+
+    <TextView
+        android:id="@+id/registration_info_text"
+        android:textSize="12dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Silahkan isi profil usaha anda"
+        android:textColor="@color/gray"
+        />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:paddingTop="20dp"
+        android:layout_below="@id/registration_info_text"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        android:id="@+id/company_profile_field"
+        android:hint="Nama Usaha*"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/company_profile_field"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textSize="18sp"
+        android:text="Jenis Usaha"
+        android:textColor="@color/textPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/company_type_text"
+        />
+    <RadioGroup
+        android:id="@+id/company_type_radio_group"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/company_type_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <RadioButton
+            android:textColor="@color/black"
+            android:id="@+id/radio_mikro"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Mikro"
+            android:buttonTint="@color/textPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:textColor="@color/black"
+            android:id="@+id/radio_kecil"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Kecil"
+            android:buttonTint="@color/textPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <RadioButton
+            android:textColor="@color/black"
+            android:id="@+id/radio_menengah"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="Menengah"
+            android:buttonTint="@color/textPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/link_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/company_type_radio_group"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:text="Link Toko Online"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_semibold"
+            android:textColor="@color/textPrimary"
+            android:textSize="18sp"
+            />
+
+        <EditText
+            android:hint="Link Tokopedia"
+            android:textColorHint="@color/gray"
+            android:id="@+id/link_tokopedia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:hint="Link Shopee"
+            android:textColorHint="@color/gray"
+            android:id="@+id/link_shopee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:hint="Link Lainnya"
+            android:textColorHint="@color/gray"
+            android:id="@+id/link_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/save_company_profile_btn"
+        android:layout_marginTop="20dp"
+        android:text="Simpan Profil"
+        android:background="@drawable/btn_primary"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="100dp"
+        android:layout_below="@id/link_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</RelativeLayout>
