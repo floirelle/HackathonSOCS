@@ -66,16 +66,13 @@ class DueTransactionAdapter() : PagerAdapter() {
         val desc = curr.description
         val nominal = curr.nominal
         val dates = Date(curr.transactionDate)
-        val localDate = LocalDate.parse(dates.toGMTString())
-        val calendar = Calendar.getInstance()
-        val year = dates.year
+        val year = dates.year + 1900
         val month = Date(curr.transactionDate).month + 1
         val day = Date(curr.transactionDate).date
         var d = ""
-        Log.d("TA",""+localDate)
         if (day < 10)d = "0"
         d+=day
-        val date= "${d}/${month}/2020"
+        val date= "${d}/${month}/${year}"
         var msg = "Lunas"
         if (curr.type !="Expense") msg = "Bayar"
         itemView.due_nominal.text = nominal.toString()
