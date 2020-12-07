@@ -1,5 +1,6 @@
 package com.sas.hackathonsocs.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
@@ -12,6 +13,8 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.EventListener
 import com.google.firebase.firestore.FirebaseFirestoreException
 import com.sas.Firestore
+import com.sas.hackathonsocs.AddContactActivity
+import com.sas.hackathonsocs.LoginActivity
 import com.sas.hackathonsocs.R
 import com.sas.hackathonsocs.adapter.ContactAdapter
 import com.sas.hackathonsocs.model.User
@@ -68,6 +71,11 @@ class ContactFragment : Fragment() {
             .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
             .getString("email", "").toString()
 //        Toast.makeText(this.context, email, Toast.LENGTH_SHORT).show()
+
+        btn_add_contact.setOnClickListener({
+            val intent = Intent(this.context, AddContactActivity::class.java)
+            startActivity(intent)
+        })
 
         Firestore.instance.collection("users")
             .document(email)

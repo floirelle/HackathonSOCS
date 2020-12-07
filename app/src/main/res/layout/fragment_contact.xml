@@ -37,7 +37,7 @@
             </LinearLayout>
         </ScrollView>
         <ImageView
-            android:id="@+id/back_arrow_btn"
+            android:id="@+id/btn_add_contact"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentBottom="true"

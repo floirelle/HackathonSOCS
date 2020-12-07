@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddContactActivity"
+    android:padding="20dp"
+    android:background="@color/white"
+    >
+
+    <ImageView
+        android:id="@+id/back_arrow_btn"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_foreground"
+        android:scaleX="-1"
+        />
+
+    <TextView
+        android:textSize="20dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kontak"
+        android:textColor="@color/textPrimary"
+        />
+
+    <TextView
+        android:id="@+id/registration_info_text"
+        android:textSize="12dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:layout_below="@id/back_arrow_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Silahkan tambahkan kontak anda"
+        android:textColor="@color/gray"
+        />
+
+    <LinearLayout
+        android:id="@+id/add_contact_form"
+        android:layout_below="@id/registration_info_text"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <TextView
+            android:text="Nama"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:hint="Nama"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_name" />
+        <TextView
+            android:text="Email"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:layout_marginTop="4dp"
+            android:hint="Email"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_email" />
+        <TextView
+            android:text="Nomor Ponsel"
+            android:id="@+id/date_transaction_field"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+            <TextView
+                android:textColor="@color/black"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="+62"
+                android:background="@drawable/transparent_bg" />
+            <EditText
+                android:textColorHint="@color/gray"
+                android:padding="10dp"
+                android:background="@color/transparent"
+                android:hint="*Nomor HP"
+                android:maxLength="12"
+                android:id="@+id/tv_phone"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/add_contact_btn"
+        android:layout_marginTop="20dp"
+        android:text="Tambah Kontak"
+        android:background="@drawable/btn_primary"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="75dp"
+        android:layout_below="@id/add_contact_form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

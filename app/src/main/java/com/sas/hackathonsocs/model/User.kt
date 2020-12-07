@@ -4,9 +4,9 @@ import android.os.Parcel
 import android.os.Parcelable
 
 class User(
-    val name:String,
-    val phoneNumber:String,
-    val email:String,
+    var name:String,
+    var phoneNumber:String,
+    var email:String,
     val gender:String
 ): Parcelable{
     constructor(parcel: Parcel) : this(
