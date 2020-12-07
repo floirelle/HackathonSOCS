@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "122659807461",
+    "project_id": "hackathonsocs-ee848",
+    "storage_bucket": "hackathonsocs-ee848.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122659807461:android:04da3dc7da58c4f8f0340c",
+        "android_client_info": {
+          "package_name": "com.sas.hackathonsocs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122659807461-it579vutc37730cckbhi6j7nllt7c5i1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sas.hackathonsocs",
+            "certificate_hash": "1d7828a65180accfc3861926eac22ed74c91c219"
+          }
+        },
+        {
+          "client_id": "122659807461-otnbvjhpk9hl6gkjffkn5cbv3a2uu925.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sas.hackathonsocs",
+            "certificate_hash": "83445b1128e6b1078cf967c0af2c52af67ddc264"
+          }
+        },
+        {
+          "client_id": "122659807461-j7259mqqlcec083g74s9u348j4or7gif.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALA__LP__-xfxogGB1u6uFKBAXLLfS_3A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122659807461-j7259mqqlcec083g74s9u348j4or7gif.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

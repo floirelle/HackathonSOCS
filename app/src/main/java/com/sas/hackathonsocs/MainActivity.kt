@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         {
             phoneNumber = user.phoneNumber!!
         }
-        val newUser = User(user.displayName!!,phoneNumber,user.email!!)
+        val newUser = User(user.displayName!!,phoneNumber,user.email!!,"Male")
         db.collection("users").document(newUser.email).set(newUser).addOnSuccessListener {
 //            redirect to user dashboard
         }

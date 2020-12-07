@@ -14,7 +14,7 @@ class RegisterActivity : AppCompatActivity() {
         register_btn.setOnClickListener()
         {
             val intent = Intent(this,OtpActivity::class.java)
-            val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString())
+            val user = User(full_name_field.text.toString(),phone_number_field.text.toString(),email_field.text.toString(), "Male")
             intent.putExtra("phoneRegister",user)
             startActivity(intent)
         }

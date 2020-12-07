@@ -6,14 +6,17 @@ import android.os.Parcelable
 class User(
     val name:String,
     val phoneNumber:String,
-    val email:String
+    val email:String,
+    val gender:String
 ): Parcelable{
     constructor(parcel: Parcel) : this(
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!
     ) {
     }
+
 
     override fun describeContents(): Int {
         return 0
@@ -23,6 +26,7 @@ class User(
         p!!.writeString(name)
         p!!.writeString(phoneNumber)
         p!!.writeString(email)
+        p!!.writeString(gender)
     }
 
 
