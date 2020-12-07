@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,203 +7,209 @@
     tools:context=".AddTransactionActivity"
     android:padding="20dp"
     android:background="@color/white"
+
     >
 
-    <ImageView
-        android:id="@+id/back_arrow_btn"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/arrow_foreground"
-        android:scaleX="-1"
-        />
-
-    <TextView
-        android:textSize="20dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:layout_below="@id/back_arrow_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Transaksi"
-        android:textColor="@color/textPrimary"
-        />
-
-    <TextView
-        android:id="@+id/registration_info_text"
-        android:textSize="12dp"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/montserrat_semibold"
-        android:layout_below="@id/back_arrow_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Silahkan isi detail transaksi anda"
-        android:textColor="@color/gray"
-        />
-
-    <LinearLayout
-        android:id="@+id/add_transaction_form"
-        android:layout_below="@id/registration_info_text"
-        android:orientation="vertical"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/date_transaction_text"
-            android:layout_marginTop="10dp"
-
-            android:text="Tanggal Transaksi"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/montserrat_regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <TextView
-            android:text="Pilih Tanggal"
-            android:id="@+id/date_transaction_field"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:layout_marginTop="10dp"
-            android:textColorHint="@color/gray"
-            android:hint="Deskripsi Transaksi"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:minLines="4"
-            android:maxLines="4"
-            android:id="@+id/transaction_description_field"
-            android:background="@drawable/transparent_bg"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/back_arrow_btn"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_foreground"
+            android:scaleX="-1"
             />
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:text="Jenis Transaksi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <RadioGroup
-            android:layout_width="match_parent"
+            android:textSize="20dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_below="@id/back_arrow_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/transaction_type_group"
-            >
-            <RadioButton
-                android:id="@+id/radio_income"
-                android:text="Pendapatan"
-                android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:id="@+id/radio_expenses"
-                android:text="Pengeluaran"
-                android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:text="Status Transaksi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <RadioGroup
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:id="@+id/transaction_status_group"
-            >
-            <RadioButton
-                android:id="@+id/radio_paid"
-                android:text="Terbayar"
-                android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:id="@+id/radio_due"
-                android:text="Tunggakan"
-                android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </RadioGroup>
-        <EditText
-            android:layout_marginTop="10dp"
-            android:inputType="number"
-            android:hint="Nominal Transaksi"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/transaction_nominal"
-            />
-        <TextView
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ingatkan Saya Setiap"
+            android:text="Transaksi"
+            android:textColor="@color/textPrimary"
             />
 
-        <RadioGroup
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/registration_info_text"
+            android:textSize="12dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/montserrat_semibold"
+            android:layout_below="@id/back_arrow_btn"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Silahkan isi detail transaksi anda"
+            android:textColor="@color/gray"
+            />
+
+        <LinearLayout
+            android:id="@+id/add_transaction_form"
+            android:layout_below="@id/registration_info_text"
             android:orientation="vertical"
-            android:id="@+id/transaction_reminder_group"
-            >
-            <RadioButton
-                android:id="@+id/radio_never"
-                android:text="Tidak Perlu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/date_transaction_text"
+                android:layout_marginTop="10dp"
+
+                android:text="Tanggal Transaksi"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
+                android:fontFamily="@font/montserrat_regular"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-            <RadioButton
-                android:id="@+id/radio_weekly"
-                android:text="Minggu"
+            <TextView
+                android:text="Pilih Tanggal"
+                android:id="@+id/date_transaction_field"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14sp"
                 android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <RadioButton
-                android:id="@+id/radio_monthly"
-                android:text="Bulan"
-                android:textColor="@color/black"
-                android:buttonTint="@color/textPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        </RadioGroup>
-        
-    </LinearLayout>
+            <EditText
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/gray"
+                android:hint="Deskripsi Transaksi"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:minLines="4"
+                android:maxLines="4"
+                android:id="@+id/transaction_description_field"
+                android:background="@drawable/transparent_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
 
-    <Button
-        android:id="@+id/add_transaction_btn"
-        android:layout_marginTop="20dp"
-        android:text="Tambah Transaksi"
-        android:background="@drawable/btn_primary"
-        android:textColor="@color/white"
-        android:layout_marginHorizontal="100dp"
-        android:layout_below="@id/add_transaction_form"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="Jenis Transaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/transaction_type_group"
+                >
+                <RadioButton
+                    android:id="@+id/radio_income"
+                    android:text="Pendapatan"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/radio_expenses"
+                    android:text="Pengeluaran"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:text="Status Transaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/transaction_status_group"
+                >
+                <RadioButton
+                    android:id="@+id/radio_paid"
+                    android:text="Terbayar"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/radio_due"
+                    android:text="Tunggakan"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </RadioGroup>
+            <EditText
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:hint="Nominal Transaksi"
+                android:textColorHint="@color/gray"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/transaction_nominal"
+                />
+            <TextView
+                android:textSize="14sp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ingatkan Saya Setiap"
+                />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/transaction_reminder_group"
+                >
+                <RadioButton
+                    android:id="@+id/radio_never"
+                    android:text="Tidak Perlu"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <RadioButton
+                    android:id="@+id/radio_weekly"
+                    android:text="Minggu"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <RadioButton
+                    android:id="@+id/radio_monthly"
+                    android:text="Bulan"
+                    android:textColor="@color/black"
+                    android:buttonTint="@color/textPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/add_transaction_btn"
+            android:layout_marginTop="20dp"
+            android:text="Tambah Transaksi"
+            android:background="@drawable/btn_primary"
+            android:textColor="@color/white"
+            android:layout_marginHorizontal="100dp"
+            android:layout_below="@id/add_transaction_form"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
 
+    </RelativeLayout>
 
-</RelativeLayout>
+</ScrollView>

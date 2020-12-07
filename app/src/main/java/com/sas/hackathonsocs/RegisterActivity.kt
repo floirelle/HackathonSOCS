@@ -16,11 +16,9 @@ class RegisterActivity : AppCompatActivity() {
         register_btn.isEnabled = false
         val intent = getIntent()
         radio_gender_group.setOnCheckedChangeListener({ group, _ ->
-
             run {
                 if (phone_number_field.text.length >= 10 && phone_number_field.text.length <= 12 )register_btn.isEnabled = true
             }
-
         })
         val tw = object: TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
