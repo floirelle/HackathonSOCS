@@ -128,6 +128,7 @@ class OtpActivity : AppCompatActivity() {
                                         // go to dashboard
                                         val intent = Intent(this,HomeActivity::class.java)
                                         intent.putExtra("user",user)
+                                        setPreferences(user)
                                         startActivity(intent)
                                     }
                                 }
@@ -145,6 +146,15 @@ class OtpActivity : AppCompatActivity() {
             }
 
 
+    }
+
+    private fun setPreferences(user: User){
+        val sharedPref = getSharedPreferences("user", MODE_PRIVATE)
+        val editor = sharedPref.edit()
+        editor.putString("email", user.email)
+        editor.putString("name", user.name)
+        editor.putString("phone", user.phoneNumber)
+        editor.apply()
     }
 
     private fun sendOTP(){

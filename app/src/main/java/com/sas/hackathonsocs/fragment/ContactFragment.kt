@@ -3,9 +3,14 @@ package com.sas.hackathonsocs.fragment
 import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.EditorInfo
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestoreException
+import com.sas.Firestore
 import com.sas.hackathonsocs.R
 import com.sas.hackathonsocs.adapter.ContactAdapter
 import com.sas.hackathonsocs.model.User
@@ -57,22 +62,25 @@ class ContactFragment : Fragment() {
 
 
     private fun setupRecycleView(){
-        var contacts = ArrayList<User>()
 
-        contacts.add(User("Shania", "082299880011","shania@gmail.com","Female"))
-        contacts.add(User("Renjun", "0822990033","renjun@gmail.com","Male"))
-        contacts.add(User("Jaemin","0811223344","jaemin@gmail.com","Male"))
-        contacts.add(User("Adi","0811223344","adi@gmail.com","Male"))
-        contacts.add(User("Stefie","0811223344","stefie@gmail.com","Female"))
-        contacts.add(User("Jeno","0811223344","jeno@gmail.com","Male"))
-        contacts.add(User("Chenle","0811223344","lele@gmail.com","Male"))
-        contacts.add(User("Jisung","0811223344","jisung@gmail.com","Male"))
-        contacts.add(User("Taeyong","0811223344","tiwai@gmail.com","Male"))
-        contacts.add(User("Budi","0811223344","bufi@gmail.com","Male"))
+        val email = this.activity!!
+            .getSharedPreferences("user", AppCompatActivity.MODE_PRIVATE)
+            .getString("email", "").toString()
 
-        contacts.sortBy { it.name }
+        Firestore.instance.collection("users")
+            .document(email)
+            .collection("contact")
+            .addSnapshotListener{ value, e ->
+                var contacts = ArrayList<User>()
+                for (doc in value!!) {
+                    contacts.add(doc.toObject(User::class.java)!!)
+                }
 
-        contactAdapter = ContactAdapter(contacts)
-        rv_contact.adapter = contactAdapter
+                contacts.sortBy { it.name }
+
+                contactAdapter = ContactAdapter(contacts)
+                rv_contact.adapter = contactAdapter
+                contactAdapter.notifyDataSetChanged()
+            }
     }
 }
