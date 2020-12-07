@@ -56,7 +56,7 @@ class AddTransactionActivity : AppCompatActivity() {
                 && transaction_nominal.length() != 0 && (radio_weekly.isChecked || radio_monthly.isChecked || radio_never.isChecked))
             {
                 val desc = transaction_description_field.text.toString()
-                var type = "Expenses"
+                var type = "Expense"
                 if(radio_income.isChecked)type = "Income"
                 var status = "Paid"
                 if(!radio_paid.isChecked) status = "Due"

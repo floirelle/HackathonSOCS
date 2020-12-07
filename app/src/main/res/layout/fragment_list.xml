@@ -21,6 +21,21 @@
             app:itemTextColor="@color/white"
             app:menu="@menu/list_menu" />
 
+        <androidx.viewpager.widget.ViewPager
+            android:layout_below="@id/nav_bottom"
+            android:padding="20dp"
+            android:id="@+id/viewPagerMain"
+            android:layout_width="match_parent"
+            android:background="@drawable/transparent_bg"
+            android:layout_height="200dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:padding="20dp"
+            android:id="@+id/recycler_view"
+            android:layout_below="@id/viewPagerMain"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ImageView
             android:id="@+id/add_btn"
             android:layout_width="60dp"
